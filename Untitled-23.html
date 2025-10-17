@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benny Restaurante</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#fffaf5;color:#333;}
+header{background:#8B0000;color:white;text-align:center;padding:2rem 1rem;}
+header h1{font-size:2.5rem;margin-bottom:0.5rem;}
+header p{font-size:1.2rem;color:#ffd4b8;}
+nav{background:#a00000;display:flex;justify-content:center;flex-wrap:wrap;}
+nav a{color:white;text-decoration:none;padding:1rem 1.5rem;font-weight:bold;transition:0.3s;}
+nav a:hover{background:#ffcc99;color:#8B0000;border-radius:8px;}
+section{padding:3rem 1rem;max-width:1200px;margin:auto;}
+h2{color:#8B0000;text-align:center;margin-bottom:2rem;font-size:2rem;}
+.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+.item{background:white;padding:1rem;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.1);text-align:center;transition:transform 0.3s;}
+.item:hover{transform:scale(1.05);}
+.item img{width:100%;height:180px;object-fit:cover;border-radius:10px;}
+.item h3{color:#8B0000;margin:0.5rem 0;}
+.item p{font-size:0.9rem;color:#555;}
+.price{color:#333;font-weight:bold;font-size:1.1rem;}
+.btn{background:#8B0000;color:white;padding:0.5rem 1rem;border:none;border-radius:8px;cursor:pointer;margin-top:0.5rem;}
+.btn:hover{background:#a00000;}
+#cart{position:fixed;top:20px;right:20px;background:#fffafa;border:2px solid #8B0000;padding:1rem;border-radius:12px;width:320px;box-shadow:0 2px 8px rgba(0,0,0,0.2);z-index:999;}
+#cart h3{margin-top:0;color:#8B0000;text-align:center;}
+#cart ul{list-style:none;padding:0;margin:0;max-height:250px;overflow-y:auto;}
+#cart li{margin-bottom:0.5rem;display:flex;justify-content:space-between;align-items:center;}
+#cart li button{background:red;color:white;border:none;border-radius:5px;padding:2px 6px;cursor:pointer;}
+#cart-total{text-align:right;font-weight:bold;margin-top:0.5rem;}
+form{display:flex;flex-direction:column;max-width:400px;margin:auto;}
+form input, form textarea, form select{padding:0.5rem;margin:0.5rem 0;border-radius:6px;border:1px solid #ccc;}
+form button{width:fit-content;}
+.testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+.testimonial{background:white;padding:1rem;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+.testimonial p{margin:0.5rem 0;font-style:italic;}
+.social-icons{text-align:center;margin:2rem 0;}
+.social-icons a{margin:0 0.5rem;text-decoration:none;color:#8B0000;font-weight:bold;}
+.hero{background:url('https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0d?auto=format&fit=crop&w=1200&q=80') center/cover;color:white;padding:6rem 1rem;border-radius:12px;text-align:center;position:relative;overflow:hidden;}
+.hero h2{background:rgba(0,0,0,0.6);display:inline-block;padding:1rem 2rem;border-radius:8px;font-size:2rem;}
+.special{background:#ffe6e6;padding:2rem;border-radius:12px;text-align:center;margin-bottom:3rem;transition:all 1s;opacity:0;transform:translateY(50px);}
+.special.visible{opacity:1;transform:translateY(0);}
+.scroll-reveal{opacity:0;transform:translateY(50px);transition:all 1s;}
+.scroll-reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:768px){header h1{font-size:2rem;} nav a{padding:0.8rem 1rem;} .hero h2{font-size:1.5rem;} .menu{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Benny Restaurante</h1>
+<p>Sabores únicos del Caribe con estilo y elegancia</p>
+</header>
+
+<nav>
+<a href="#comidas">Comidas</a>
+<a href="#vinos">Vinos</a>
+<a href="#bebidas">Bebidas</a>
+<a href="#cocteles">Cocteles & Licor</a>
+<a href="#reservas">Reservas</a>
+<a href="#comentarios">Comentarios</a>
+<a href="#contacto">Contacto</a>
+</nav>
+
+<section class="hero scroll-reveal">
+<h2>Bienvenidos a Benny Restaurante</h2>
+</section>
+
+<section class="special scroll-reveal visible">
+<h2>🍽️ Especial del Día</h2>
+<p>Pescado Caribeño con salsa tropical y plátano maduro</p>
+</section>
+
+<!-- Menú Comidas -->
+<section id="comidas">
+<h2>Menú de Comidas</h2>
+<div class="menu">
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1605475128031-1030f4d67b1a?auto=format&fit=crop&w=800&q=80" alt="Pescado Caribeño">
+<h3>Pescado Caribeño</h3>
+<p>Pescado fresco con salsa tropical y plátano maduro.</p>
+<p class="price">$18.00</p>
+<button class="btn" onclick="addToCart('Pescado Caribeño',18)">Añadir</button>
+</div>
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="Pollo Parrilla">
+<h3>Pollo a la Parrilla</h3>
+<p>Jugoso pollo con papas rústicas y ensalada.</p>
+<p class="price">$15.00</p>
+<button class="btn" onclick="addToCart('Pollo a la Parrilla',15)">Añadir</button>
+</div>
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1612874742257-3c09a066d4ae?auto=format&fit=crop&w=800&q=80" alt="Pasta Alfredo">
+<h3>Pasta Alfredo</h3>
+<p>Pasta cremosa con champiñones y pollo.</p>
+<p class="price">$14.00</p>
+<button class="btn" onclick="addToCart('Pasta Alfredo',14)">Añadir</button>
+</div>
+</div>
+</section>
+
+<!-- Carta de Vinos -->
+<section id="vinos">
+<h2>Carta de Vinos 🍷</h2>
+<div class="menu">
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1590080875831-cd3e7c0464cf?auto=format&fit=crop&w=800&q=80" alt="Vino Tinto">
+<h3>Vino Tinto Reserva</h3>
+<p>Aromas a frutas rojas, madera y chocolate.</p>
+<p class="price">$25.00</p>
+<button class="btn" onclick="addToCart('Vino Tinto Reserva',25)">Añadir</button>
+</div>
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80" alt="Vino Blanco">
+<h3>Vino Blanco Dulce</h3>
+<p>Perfecto para acompañar postres o mariscos.</p>
+<p class="price">$22.00</p>
+<button class="btn" onclick="addToCart('Vino Blanco Dulce',22)">Añadir</button>
+</div>
+</div>
+</section>
+
+<!-- Bebidas sin alcohol -->
+<section id="bebidas">
+<h2>Bebidas sin Alcohol 🥤</h2>
+<div class="menu">
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1600891964167-1f1c3a31d6c4?auto=format&fit=crop&w=800&q=80" alt="Jugo Naranja">
+<h3>Jugo Natural de Naranja</h3>
+<p>Frescura de naranjas recién exprimidas.</p>
+<p class="price">$5.00</p>
+<button class="btn" onclick="addToCart('Jugo Natural de Naranja',5)">Añadir</button>
+</div>
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80" alt="Smoothie">
+<h3>Smoothie Tropical</h3>
+<p>Mezcla de mango, piña y banana.</p>
+<p class="price">$6.50</p>
+<button class="btn" onclick="addToCart('Smoothie Tropical',6.5)">Añadir</button>
+</div>
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1598514983785-ff1b7f004a2b?auto=format&fit=crop&w=800&q=80" alt="Limonada">
+<h3>Limonada Fresca</h3>
+<p>Limonada natural con menta.</p>
+<p class="price">$4.50</p>
+<button class="btn" onclick="addToCart('Limonada Fresca',4.5)">Añadir</button>
+</div>
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1607013259606-4b70f0f3ec68?auto=format&fit=crop&w=800&q=80" alt="Té Helado">
+<h3>Té Helado</h3>
+<p>Té negro frío con limón y menta.</p>
+<p class="price">$4.00</p>
+<button class="btn" onclick="addToCart('Té Helado',4)">Añadir</button>
+</div>
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1598514983785-ff1b7f004a2b?auto=format&fit=crop&w=800&q=80" alt="Agua de Coco">
+<h3>Agua de Coco Natural</h3>
+<p>Directo del coco, refrescante y saludable.</p>
+<p class="price">$5.50</p>
+<button class="btn" onclick="addToCart('Agua de Coco Natural',5.5)">Añadir</button>
+</div>
+</div>
+</section>
+
+<!-- Cocteles y Licores -->
+<section id="cocteles">
+<h2>Cocteles & Licores 🍸</h2>
+<div class="menu">
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1600718371751-432b3a0d4476?auto=format&fit=crop&w=800&q=80" alt="Mojito">
+<h3>Mojito</h3>
+<p>Hierbabuena, limón y ron blanco.</p>
+<p class="price">$10.00</p>
+<button class="btn" onclick="addToCart('Mojito',10)">Añadir</button>
+</div>
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1582582494709-353488f23e23?auto=format&fit=crop&w=800&q=80" alt="Piña Colada">
+<h3>Piña Colada</h3>
+<p>Piña, coco y ron blanco.</p>
+<p class="price">$11.00</p>
+<button class="btn" onclick="addToCart('Piña Colada',11)">Añadir</button>
+</div>
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1617196030106-23b526ab29df?auto=format&fit=crop&w=800&q=80" alt="Mamajuana">
+<h3>Mamajuana</h3>
+<p>Bebida típica de República Dominicana.</p>
+<p class="price">$12.00</p>
+<button class="btn" onclick="addToCart('Mamajuana',12)">Añadir</button>
+</div>
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1617196030106-23b526ab29df?auto=format&fit=crop&w=800&q=80" alt="Whisky">
+<h3>Whisky</h3>
+<p>Whisky escocés de 12 años.</p>
+<p class="price">$15.00</p>
+<button class="btn" onclick="addToCart('Whisky',15)">Añadir</button>
+</div>
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1617196030106-23b526ab29df?auto=format&fit=crop&w=800&q=80" alt="Ron">
+<h3>Ron Premium</h3>
+<p>Ron añejo dominicano.</p>
+<p class="price">$14.00</p>
+<button class="btn" onclick="addToCart('Ron Premium',14)">Añadir</button>
+</div>
+<div class="item scroll-reveal">
+<img src="https://images.unsplash.com/photo-1617196030106-23b526ab29df?auto=format&fit=crop&w=800&q=80" alt="Tequila">
+<h3>Tequila</h3>
+<p>Tequila reposado mexicano.</p>
+<p class="price">$13.00</p>
+<button class="btn" onclick="addToCart('Tequila',13)">Añadir</button>
+</div>
+</div>
+</section>
+
+<!-- Carrito -->
+<div id="cart">
+<h3>Carrito 🛒</h3>
+<ul id="cart-items"></ul>
+<p id="cart-total">Total: $0</p>
+<button class="btn" onclick="confirmOrder()">Confirmar Pedido</button>
+<button class="btn" onclick="printOrder()">Imprimir Cuenta</button>
+</div>
+
+<!-- Comentarios -->
+<section id="comentarios">
+<h2>Comentarios de Clientes 💬</h2>
+<form id="comentarioForm" onsubmit="addComment(event)">
+<input type="text" placeholder="Nombre" required>
+<textarea placeholder="Escribe tu comentario..." rows="4" required></textarea>
+<button class="btn" type="submit">Enviar Comentario</button>
+</form>
+<div id="comentariosList"></div>
+</section>
+
+<!-- Reservas -->
+<section id="reservas">
+<h2>Reservas 📅</h2>
+<form onsubmit="submitReservation(event)">
+<input type="text" placeholder="Nombre" required>
+<input type="email" placeholder="Correo electrónico" required>
+<input type="date" required>
+<input type="time" required>
+<button type="submit" class="btn">Reservar Mesa</button>
+</form>
+</section>
+
+<!-- Contacto -->
+<section id="contacto">
+<h2>Contacto 📬</h2>
+<form>
+<input type="text" placeholder="Nombre" required>
+<input type="email" placeholder="Correo electrónico" required>
+<textarea placeholder="Mensaje" rows="5"></textarea>
+<button class="btn" type="submit">Enviar Mensaje</button>
+</form>
+<iframe src="https://maps.google.com/maps?q=santo%20domingo&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="300" style="border:0;margin-top:1rem;" allowfullscreen="" loading="lazy"></iframe>
+</section>
+
+<script>
+let cart=[];
+function addToCart(name,price){cart.push({name,price});renderCart();}
+function removeFromCart(i){cart.splice(i,1);renderCart();}
+function renderCart(){
+  const list=document.getElementById('cart-items');list.innerHTML='';let total=0;
+  cart.forEach((item,i)=>{total+=item.price;
+    const li=document.createElement('li');li.textContent=`${item.name} - $${item.price.toFixed(2)}`;
+    const btn=document.createElement('button');btn.textContent='X';btn.onclick=()=>removeFromCart(i);
+    li.appendChild(btn);list.appendChild(li);
+  });
+  document.getElementById('cart-total').textContent=`Total: $${total.toFixed(2)}`;
+}
+function confirmOrder(){
+  if(cart.length===0){alert("El carrito está vacío"); return;}
+  alert("✅ Pedido confirmado. Total: $" + cart.reduce((a,b)=>a+b.price,0).toFixed(2));
+  cart=[];renderCart();
+}
+function printOrder(){
+  if(cart.length===0){alert("El carrito está vacío"); return;}
+  let content="--- Cuenta Benny Restaurante ---\n";
+  cart.forEach(item=>{content+=`${item.name} - $${item.price.toFixed(2)}\n`});
+  content+=`Total: $${cart.reduce((a,b)=>a+b.price,0).toFixed(2)}\n`;
+  const w=window.open('','PRINT','width=600,height=400');
+  w.document.write('<pre>'+content+'</pre>');w.document.close();w.focus();w.print();w.close();
+}
+function submitReservation(e){e.preventDefault();alert("✅ Reserva realizada exitosamente. Te esperamos!");e.target.reset();}
+function addComment(e){
+  e.preventDefault();
+  const form=e.target; const name=form[0].value; const text=form[1].value;
+  const div=document.createElement('div'); div.className="testimonial scroll-reveal";
+  div.innerHTML=`<strong>${name}:</strong> <p>${text}</p>`;
+  document.getElementById('comentariosList').appendChild(div);form.reset();
+}
+window.addEventListener('scroll',()=>{
+  document.querySelectorAll('.scroll-reveal').forEach(el=>{const rect=el.getBoundingClientRect();if(rect.top<window.innerHeight-50) el.classList.add('visible');});
+});
+</script>
+
+</body>
+</html>
